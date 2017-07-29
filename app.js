@@ -1,7 +1,9 @@
+console.time('test');
 const mostCommon = require('most-common');
 const _ = require('underscore');
 const moment = require('moment');
 const timestamp = require('unix-timestamp')
+console.log('Started');
 var columns = ["Date_and_Time", "Caller_ID", "Employee_ID", "Duration", "Talk_Time", "Status"];
 var prob1 = [];
 var prob2 = [];
@@ -152,7 +154,9 @@ console.log('\n');
     ans = mostCommon(prob7, 1);
     console.log("Client with most frequent calls: ");
     console.log(ans[0])
-
+    console.log('\n');
+    console.log('\n');
+console.timeEnd('test');
 
 
 });
