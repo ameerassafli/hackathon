@@ -4,6 +4,7 @@ const moment = require('moment');
 const timestamp = require('unix-timestamp')
 var columns = ["Date_and_Time", "Caller_ID", "Employee_ID", "Duration", "Talk_Time", "Status"];
 var prob1 = [];
+var prob2 = [];
 var prob3 = [];
 var prob35 = [];
 var prob4 = [];
@@ -18,6 +19,7 @@ require("csv-to-array")({
 
     for (let i = 0; i < array.length; i++) {
         prob1.push(array[i].Date_and_Time);
+        prob2.push({time :timestamp.fromDate(array[i].Date_and_Time) , ctime: parseInt(array[i].Duration) + parseInt(array[i].Talk_Time) , active: 1})
         prob3.push(JSON.stringify({'Caller_ID':array[i].Caller_ID , 'Employee_ID' : array[i].Employee_ID}))
         prob35.push({ 'ce': JSON.stringify({'Caller_ID':array[i].Caller_ID , 'Employee_ID' : array[i].Employee_ID}) , 'dur': parseInt(array[i].Talk_Time)})
 
@@ -34,9 +36,27 @@ require("csv-to-array")({
         prob7.push(array[i].Caller_ID);
 
     }
+prob2.sort(function(a, b) {
+        let probA = a.time,
+            probB = b.time
+        if (probA < probB)
+            return -1
+        if (probA > probB)
+            return 1
+        return 0
+    })
+var maxp2 = 1;
+for(let i = 0 ; i<prob2.length - 1 ; i++){
+    let p = prob2[i].time + prob2[i].ctime
+for(let j=i+1 ; p >= prob2[j].time ; j++){
+prob2[j].active ++;
+if(j==prob2.length-1){break;}
 
+}
 
-
+  if(maxp2 <= prob2[i].active){maxp2 = prob2[i].active;}
+}
+//console.log(prob2);
     prob6.sort(function(a, b) {
         let probA = a.id,
             probB = b.id
@@ -98,11 +118,13 @@ prob35.sort(function(a, b) {
     console.log("Client with most frequent calls: ");
     console.log(ans[0])
 
- console.log(moment.unix(1318781876))
-// var now = moment()
-// var formatted = now.format('YYYY-MM-DD HH:mm:ss Z') 
-// console.log(formatted)
-console.log(timestamp.fromDate(array[0].Date_and_Time));
-console.log(moment.unix(timestamp.fromDate(array[0].Date_and_Time)))
+  console.log(maxp2);
+//  console.log(moment.unix(1318781876))
+// // var now = moment()
+// // var formatted = now.format('YYYY-MM-DD HH:mm:ss Z') 
+// // console.log(formatted)
+// console.log(timestamp.fromDate(array[0].Date_and_Time));
+// console.log(moment.unix(timestamp.fromDate(array[0].Date_and_Time)))
+
 
 });
