@@ -13,6 +13,7 @@
   "dependencies": {
     "csv-to-array": "^1.0.2",
     "csvtojson": "^1.1.7",
+    "hamsters.js": "^4.1.4",
     "in-array": "^0.1.2",
     "most-common": "^1.2.1",
     "underscore": "^1.8.3"
