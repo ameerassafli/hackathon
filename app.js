@@ -8,8 +8,8 @@ var prob2 = [];
 var prob3 = [];
 var prob35 = [];
 var prob4 = [];
-var prob7 = [];
 var prob6 = [];
+var prob7 = [];
 
 require("csv-to-array")({
     file: "./data.csv",
@@ -19,7 +19,7 @@ require("csv-to-array")({
 
     for (let i = 0; i < array.length; i++) {
         prob1.push(array[i].Date_and_Time);
-        //prob2.push({time :timestamp.fromDate(array[i].Date_and_Time) , ctime: parseInt(array[i].Duration) + parseInt(array[i].Talk_Time) , active: 1})
+        
         prob3.push(JSON.stringify({
             'Caller_ID': array[i].Caller_ID,
             'Employee_ID': array[i].Employee_ID
@@ -102,7 +102,7 @@ require("csv-to-array")({
             return 1
         return 0
     })
-    for (let i = 0; i < prob6.length - 1; i++) {
+    for (let i = 0; i < prob35.length - 1; i++) {
         if (prob35[i].ce == prob35[i + 1].ce) {
             prob35[i + 1].dur += prob35[i].dur;
         } else {
