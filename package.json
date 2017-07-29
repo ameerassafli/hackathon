@@ -15,7 +15,9 @@
     "csvtojson": "^1.1.7",
     "hamsters.js": "^4.1.4",
     "in-array": "^0.1.2",
+    "moment": "^2.18.1",
     "most-common": "^1.2.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "unix-timestamp": "^0.2.0"
   }
 }

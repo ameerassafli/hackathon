@@ -1,5 +1,7 @@
 const mostCommon = require('most-common');
 const _ = require('underscore');
+const moment = require('moment');
+const timestamp = require('unix-timestamp')
 var columns = ["Date_and_Time", "Caller_ID", "Employee_ID", "Duration", "Talk_Time", "Status"];
 var prob1 = [];
 var prob3 = [];
@@ -70,27 +72,37 @@ prob35.sort(function(a, b) {
     }
 
     let ans = mostCommon(prob1, 1);
-    console.log("Peak minute of incoming phonecalls. (including not answered phonecall):\n " + ans[0].token + "\n");
+    console.log("Peak minute of incoming phonecalls. (including not answered phonecall): " );
+    console.log(ans[0])
     ans2 = mostCommon (prob3 , 1);
     console.log("Suspicious Relations : ")
-    console.log("1 - Most Calls: " + ans2[0].token);
+    console.log("1 - Most Calls: " );
+    console.log(ans2[0])
     console.log("2 - Longest Talk Time: ")
     console.log( _.max(prob35, function(prob) {
         return prob.dur;
     }));
     ans = mostCommon(prob4, 1);
-    console.log("Most productive employee (employee with most answered phonecalls): " + ans[0].token + "\n");
+    console.log("Most productive employee (employee with most answered phonecalls): " );
+    console.log(ans[0])
     var x = []
     x = mostCommon(prob4, prob4.length);
-    console.log("Least productive employee (employee with least answered phonecalls): " + x[x.length - 2].token + "\n");
+    console.log("Least productive employee (employee with least answered phonecalls): " );
+    console.log(x[x.length - 2])
     x = [];
     console.log("Client with longest talk time: ")
     console.log( _.max(prob6, function(prob) {
         return prob.dur;
     }));
     ans = mostCommon(prob7, 1);
-    console.log("Client with most frequent calls: " + ans[0].token + "\n");
+    console.log("Client with most frequent calls: ");
+    console.log(ans[0])
 
-
+ console.log(moment.unix(1318781876))
+// var now = moment()
+// var formatted = now.format('YYYY-MM-DD HH:mm:ss Z') 
+// console.log(formatted)
+console.log(timestamp.fromDate(array[0].Date_and_Time));
+console.log(moment.unix(timestamp.fromDate(array[0].Date_and_Time)))
 
 });
